@@ -1,0 +1,6 @@
+.helper-container {
+    min-width: 100px;
+    padding: 1rem;
+    border-right: 1px dashed #333;
+    /* border:1px dashed blue; */
+}

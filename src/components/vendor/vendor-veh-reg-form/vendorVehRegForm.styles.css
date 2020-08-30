@@ -1,0 +1,16 @@
+.form-container {
+    /* width: 400px; */
+    margin: 1.5rem 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;    
+    grid-gap: 1rem;
+}
+
+.helper-container {
+    grid-column: 1 / 2;
+    
+}
+
+.form-container form {
+    grid-column: 2 / 3;
+}

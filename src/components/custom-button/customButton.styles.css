@@ -1,0 +1,17 @@
+.regular-button {
+    min-width: 100px;
+    padding: 0.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color:white;
+    cursor: pointer;
+    border:none;
+}
+
+.regular-button:hover {
+    background-color: white;
+    border:1px solid black;
+    color:black;
+}

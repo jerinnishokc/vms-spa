@@ -1,0 +1,29 @@
+.vendorpage-container {
+    display: grid;
+    grid-template-areas: 
+    "nav nav nav nav"
+    "sidenav main main main"
+    "footer footer footer footer";    
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 0.25fr 3fr 1fr;
+}
+
+.vendorpage-container .nav-bar {
+    grid-area: nav;
+}
+
+.vendorpage-container aside {
+    grid-area: sidenav;    
+}
+
+.vendorpage-container main {
+    /* background-color: bisque; */
+    border:1px dashed black;
+    grid-area: main;
+}
+
+.vendorpage-container footer {
+    grid-area: footer;
+}
+
+
