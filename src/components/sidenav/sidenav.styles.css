@@ -1,6 +1,7 @@
 .vendor-side-nav {
-    height: 80vh;
+    min-height: 80vh;
     /* width: 25vw; */
+    width:100%;
     background-color: blueviolet;
     padding:1rem;
 }

@@ -2,7 +2,7 @@ footer {
     position: relative;
     padding: 1.5rem;
     min-height: 20vh;
-    width:100vw;
+    width:100%;
     background-color: aquamarine;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;

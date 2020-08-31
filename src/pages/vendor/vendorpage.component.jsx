@@ -4,25 +4,47 @@ import SideNav from '../../components/sidenav/sidenav.component';
 import Footer from '../../components/footer/footer.component';
 import './vendorpage.styles.css';
 import VendorBox from '../../components/vendor/vendor-box/vendor-box.component';
+import {getAllVehicles, addVehicle} from '../../data/vehicle.datastore';
 
 class VendorPage extends React.Component {   
     state = {
+        isLoading: true,
         vehicles: []
     }; 
 
-    addVehicle = (vehicle) => {
-        // console.log('add vehicle: ', vehicle);
-        this.setState(state => {
-            // console.log('state before update: ', state);
-            const newList = [...state.vehicles, vehicle];
-            // console.log('state before update: ', newList);
+    async componentDidMount() {        
+        const vehicles = await getAllVehicles();
+        console.log("From the Vendor page componentDidMount: ");
+        console.log("Vehicles: ", vehicles);
+        this.setState({
+            vehicles: vehicles.map(x => ({
+                id: x.vehId,
+                regId: x.id, 
+                name: x.name, 
+                company: x.company
+            }))
+        }, () => this.setState({isLoading: false}));
+    }
 
-            return {
-                vehicles : newList
-            };
-        }, () => {
-            console.log('successfully updated the vehicles')
-        })
+    addVehicle = async (vehicle) => {
+        // console.log('add vehicle: ', vehicle);
+        const result = await addVehicle(vehicle);
+        
+        if(result === 'success') {
+            this.setState(state => {
+                // console.log('state before update: ', state);
+                const newList = [...state.vehicles, vehicle];
+                // console.log('state before update: ', newList);
+    
+                return {
+                    vehicles : newList
+                };
+            }, () => {
+                console.log('successfully updated the vehicles')
+            });
+        } else {
+            alert('Error occurred');
+        }
     };
 
     render() {
@@ -31,7 +53,7 @@ class VendorPage extends React.Component {
                 <Navbar page="vendorpage" />
                 <SideNav page="vendorpage" className="sidenav"/>
                 <main>
-                    <VendorBox addVehicle={this.addVehicle} vehicles={this.state.vehicles}/>
+                    <VendorBox addVehicle={this.addVehicle} vehicles={this.state.vehicles} isLoading={this.state.isLoading}/>
                 </main>
                 <Footer />
             </div>

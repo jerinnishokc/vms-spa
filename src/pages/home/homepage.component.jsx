@@ -33,19 +33,21 @@ class HomePage extends React.Component {
       
     render() {
         return (
-            <div className="App">
-            <Navbar page="HomePage"/>
-            <main className="main-container">
-                <section id="about">About</section>
-                <section id="services">
-                <h1>Services</h1>
-                <ul>
-                    <Link to="/vendor">Vendor services</Link>
-                </ul>
-                </section>
-                <section id="contact">Contact</section>          
-            </main>
-            <Footer />
+            <div>
+              <Navbar page="HomePage"/>
+              <main className="main-container">
+                  <section id="about">
+                    <div>About</div>
+                  </section>
+                  <section id="services">
+                    <h1>Services</h1>
+                    <ul>
+                        <Link to="/vendor">Vendor services</Link>
+                    </ul>
+                  </section>
+                  <section id="contact">Contact</section>          
+              </main>
+              <Footer />
             </div>
         );
     }

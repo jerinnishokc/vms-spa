@@ -8,17 +8,19 @@ import ScrollToTop from './components/scroll-to-top/scrollToTop.component';
 class App extends React.Component {
   render() {
       return (
-        <Router>
-          <ScrollToTop />
-          <Switch>
-            <Route exact path="/">
-              <HomePage/>
-            </Route>
-            <Route path="/vendor">
-              <VendorPage/>
-            </Route>
-          </Switch>
-        </Router>
+        <div className="App">
+          <Router>
+            <ScrollToTop />
+            <Switch>
+              <Route exact path="/">
+                <HomePage/>
+              </Route>
+              <Route path="/vendor">
+                <VendorPage/>
+              </Route>
+            </Switch>
+          </Router>
+        </div>
     );
   }
 }

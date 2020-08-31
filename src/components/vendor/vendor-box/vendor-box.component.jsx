@@ -9,7 +9,7 @@ const VendorBox = (props) => {
     return (
         <div>
             <Route exact path={props.match.path}>
-                <VendorDashboard vehicles={props.vehicles}/>
+                <VendorDashboard vehicles={props.vehicles} isLoading={props.isLoading}/>
             </Route>
             <Route exact path={`${props.match.path}/vendor-reg-form`}>
                 <VendorVehRegForm addVehicle={props.addVehicle}/>
