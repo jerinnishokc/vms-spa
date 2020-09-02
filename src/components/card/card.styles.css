@@ -1,0 +1,111 @@
+.card {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;   
+    width:30%;
+    height:30%; 
+    border-radius: 0.5rem;
+    margin: 1rem 1rem 0 0;
+    /* padding:1em; */
+}
+
+.card .img-container {
+    /* border:1px solid red; */
+    /* width:90%; */
+    height: 40%;
+    overflow: hidden;
+}
+
+.card .img-container > img {
+    height:100%;
+    width:100%;
+    transition: transform ease 3s;
+    cursor: pointer;
+}
+
+.card .img-container > img:hover {
+    transform:scale(1.2);
+}
+
+.card .card-body {
+    /* border: 1px solid blue; */
+    padding: 1em; 
+    font-size: 0.9rem;
+}
+
+.card .card-body h2 {
+    font-size: 1em;
+}
+
+.card .card-body h3 {
+    font-size: 0.9em;
+}
+
+.button-container {
+    width:100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin:1rem auto;
+    /* border:1px solid black; */
+}
+
+.button-container > button {
+    height: 2.2rem;/*approx 40px*/
+    border-radius: 0.2rem;
+    border:none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.button-container > button:active {
+    transform:scale(0.9);
+}
+
+.button-container .booking-button {
+    width:30%;
+    background-color:#368F8B;
+    color: white;
+    border:none;
+}
+
+.button-container .booking-button:hover {
+    background-color: white;
+    color: #368F8B;
+    border:1px solid #368F8B;
+}
+
+
+.button-container .edit-button,.delete-button {
+    width:20%;
+    font-size:1.3rem;
+}
+
+.button-container .edit-button {
+    background-color:#1D2F6F;
+    color: white;
+    border:none;
+}
+
+.button-container .edit-button:hover {
+    background-color:white;
+    color: #1D2F6F;
+    border:1px solid #1D2F6F;
+}
+
+.button-container .delete-button {
+    background-color:#D91E36;
+    color: white;
+    border:none;
+}
+
+.button-container .delete-button:hover {
+    background-color:white;
+    color: #D91E36;
+    border:1px solid #D91E36;
+}
+
+/* .button-container > button:hover {
+    filter: brightness(130%);
+} */

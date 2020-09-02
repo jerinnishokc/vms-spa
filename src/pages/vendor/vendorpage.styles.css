@@ -5,7 +5,7 @@
     "sidenav main main main"
     "footer footer footer footer";    
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 0.25fr 3fr 1fr;
+    grid-template-rows: 10vh auto 20vh;
 }
 
 .vendorpage-container .nav-bar {
