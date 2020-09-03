@@ -50,7 +50,7 @@ class VendorPage extends React.Component {
     render() {
         return (
             <div className="vendorpage-container">
-                <Navbar page="vendorpage" />
+                <Navbar page="VendorPage" />
                 <SideNav page="vendorpage" className="sidenav"/>
                 <main>
                     <VendorBox addVehicle={this.addVehicle} vehicles={this.state.vehicles} isLoading={this.state.isLoading}/>

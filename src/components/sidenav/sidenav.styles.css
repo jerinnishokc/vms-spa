@@ -2,8 +2,9 @@
     min-height: 80vh;
     /* width: 25vw; */
     width:100%;
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
     padding:1rem;
+    border-right: 1px solid grey;
 }
 
 .vendor-side-nav ul {
@@ -11,5 +12,42 @@
 }
 
 .vendor-side-nav ul li {
-    border-bottom: 1px dashed white;
+    border-bottom: 1px dashed black;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin:0.5rem auto;
+}
+
+.vendor-side-nav ul li > a {
+    text-decoration:none;
+}
+
+@media screen and (max-width: 400px) {
+    .vendor-side-nav {
+        width:100%;
+        min-height: 10vh;
+        padding:1rem;
+        border-right: 1px solid grey;
+        display: flex;
+        justify-content: space-between;
+        align-items: center; 
+        border:1px solid black;       
+    }
+
+    .vendor-side-nav ul {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .vendor-side-nav ul li {
+        border-bottom: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin:0.5rem auto;
+        border-right:1px solid black;
+        border-left:1px solid black;
+    }
 }

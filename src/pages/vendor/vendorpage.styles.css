@@ -18,7 +18,7 @@
 
 .vendorpage-container main {
     /* background-color: bisque; */
-    border:1px dashed black;
+    /* border:1px dashed black; */
     grid-area: main;
 }
 
@@ -26,4 +26,15 @@
     grid-area: footer;
 }
 
+@media screen and (max-width: 400px) {
+    .vendorpage-container {
+        grid-template-areas: 
+        "nav"
+        "sidenav"
+        "main"
+        "footer";     
+        grid-template-columns: 1fr;   
+        grid-template-rows: 10vh 10vh auto 20vh;
+    }
+}
 
