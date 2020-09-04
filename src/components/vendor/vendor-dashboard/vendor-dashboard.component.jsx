@@ -3,14 +3,11 @@ import './vendor-dashboard.styles.css';
 import CardContainer from '../../card-container/card-container.component';
 
 const VendorDashboard = (props) => {
-    console.log('From vehicle dashboard', props.vehicles);
-    console.log('isLoading', props.isLoading);
-
     return (
         <div className="vendor-dashboard">
+            <input className="searchInputContainer" type="text" placeholder="Search vehicles" onChange={props.updateFilterText}/>
             {
                 props.isLoading ? 
-                //<p>Loading</p>
                 <div className="loader-container">
                     <p>Let's get your vehicles</p>
                     <div className="lds-facebook">
@@ -21,15 +18,9 @@ const VendorDashboard = (props) => {
                 </div>
                 : 
                 props.vehicles.length > 0 ?  
-                // <ul>
-                //     {props.vehicles.map(x => 
-                //         <li key={x.id}>{x.regId}-{x.name}-{x.company}</li>
-                //     )}
-                // </ul>
                 <CardContainer vehicles={props.vehicles} />
                 :
-                <p>No vehicles yet!!</p>
-                
+                <p>No vehicles found!!</p>
             }
         </div>
     );
