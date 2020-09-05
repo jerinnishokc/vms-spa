@@ -1,0 +1,10 @@
+.box-container{
+    width: 20%;
+    /* height:10%; */
+    overflow: hidden;
+}
+
+.box-image-container {
+    width: 100%;
+    height:100%;
+}

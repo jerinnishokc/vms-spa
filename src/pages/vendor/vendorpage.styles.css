@@ -4,8 +4,11 @@
     "nav nav nav nav"
     "sidenav main main main"
     "footer footer footer footer";    
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 0.5fr 1fr 1fr 1fr;
     grid-template-rows: 10vh auto 20vh;
+    /* background-color:#41B3A3; */
+    /* #2F2FA2; */
+    /* color:white; */
 }
 
 .vendorpage-container .nav-bar {
@@ -24,6 +27,18 @@
 
 .vendorpage-container footer {
     grid-area: footer;
+}
+
+@media screen and (max-width: 1291px) {
+    .vendorpage-container {
+        grid-template-columns: 0.8fr 0.5fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .vendorpage-container {
+        grid-template-columns: 1.5fr 0.5fr 1fr 1fr;
+    }
 }
 
 @media screen and (max-width: 400px) {

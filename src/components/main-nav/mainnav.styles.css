@@ -1,17 +1,31 @@
 .nav-bar {
     position: fixed;
-    background: rgba(160, 236, 208,0.5);
-    padding: 1rem;
+    background: rgba(250,250,250, 0.2);
+    /* rgba(160, 236, 208,0.5); */
+    padding: 1.5rem;
     display: flex;
     width: 100%;
     justify-content: space-between;
     /* -webkit-box-shadow: 1px 12px 25px 1px rgba(0,0,0,0.49);  */
     z-index:10;
-    box-shadow: 1px 8px 15px 1px rgba(0,0,0,0.25);
+    box-shadow: 1px 8px 15px 1px rgba(0,0,0,0.25);    
+    font-family: Comfortaa, Roboto, sans-serif;
 }
 
 .nav-bar a {
+    padding:0.5rem;
     text-decoration: none;
+    color:white;
+}
+
+.invert a {
+    color: black;
+}
+
+.nav-bar .menu-container a:hover {
+    background: #F64C72;
+    color:white;
+    transform:scale(1.5);
 }
 
 .nav-bar ul {
@@ -27,4 +41,15 @@
 .nav-bar ul li:last-child {
     /* background-color: chartreuse; */
     margin-left: 0.5rem;
+}
+
+.logo-container {
+    font-weight: 700;
+    letter-spacing: 0.2rem;
+    font-family: Kaushan Script, Roboto, sans-serif;
+}
+
+.menu-container li:last-child a {
+    /* padding:0.5rem; */
+    border:3.5px solid #F64C72;
 }

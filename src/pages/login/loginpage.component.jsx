@@ -5,7 +5,7 @@ class LoginPage extends React.Component {
     render() {
         return (
             <div>
-                <Navbar page="VendorPage" />
+                <Navbar page="LoginPage" />
                 <p>Login Form has to be placed here!!!</p>
             </div>
         );
