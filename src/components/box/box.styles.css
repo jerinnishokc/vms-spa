@@ -1,10 +1,51 @@
-.box-container{
+.box-container {
     width: 20%;
     /* height:10%; */
     overflow: hidden;
+    cursor:pointer;
+    position: relative;    
 }
 
-.box-image-container {
+.box-text-container-odd {
+    padding:1rem;
+    width:100%;
+    height:100%;
+    transform:translateY(100%);
+    position: absolute;
+    transition: transform ease 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-text-container-odd > h1 {
+    writing-mode: vertical-lr;
+}
+
+.box-image-container-odd {
     width: 100%;
     height:100%;
+}
+
+.box-container:hover .box-text-container-odd {
+    transform: translateY(0px);
+}
+
+.box-text-container-even {
+    width:100%;
+    height:100%;
+    position:absolute;
+    padding:1rem;
+}
+
+.box-image-container-even {
+    width: 100%;
+    height:100%;
+    transform:translateY(100%);
+    position: absolute;
+    transition: transform ease 0.5s;
+}
+
+.box-container:hover .box-image-container-even {
+    transform: translateY(0px);
 }
