@@ -30,6 +30,7 @@ class HomePage extends React.Component {
     
       componentDidMount() {
         console.log("App component did mount is called");
+        
       }
     
       handleClick = async (e) => {
@@ -84,7 +85,17 @@ class HomePage extends React.Component {
                         {/*<Link to="/vendor">Vendor services</Link>*/}
                     </div>                  
                   </section>
-                  <section id="contact">Contact</section>          
+                  <section id="contact">
+                    <h1>Contact</h1>
+                    <div className="social-icons">
+                      <i className="fab fa-whatsapp"></i>
+                      <i className="fab fa-twitter"></i>
+                      <i className="fab fa-linkedin-in"></i>
+                      <i className="fab fa-instagram"></i>
+                      <i className="fab fa-facebook"></i>
+                      <i className="fab fa-youtube"></i>
+                  </div>
+                  </section>          
               </main>
               <Footer />
             </div>

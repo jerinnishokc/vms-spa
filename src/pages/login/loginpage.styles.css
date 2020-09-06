@@ -1,0 +1,52 @@
+.login-page-container {
+    top:0;
+    width: 100vw;
+    height:100vh;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index:10;
+}
+
+.bg-image-layer-1 {
+    /* content:""; */
+    /* background-color: #2F2FA2; */
+    /* clip-path: polygon(0 0, 100% 0%, 0 99%, 0% 100%); */
+    position:fixed;
+    width: 100vw;
+    height:100vh; 
+    z-index:-1;  
+    overflow: hidden;    
+}
+
+.bg-image-layer-1 > svg {
+    /* background-color:#2F2FA2; */
+    transform:scale(2.3) translateX(-65px) translateY(-200px);
+    /* transition: transform ease 2s; */
+}
+
+.login-form-container:hover .bg-image-layer-1 {
+    background-color:#2F2FA2;
+    /* transform:scale(5) translateX(-65px) translateY(-200px); */
+}
+
+.login-form-container {
+    width:370px;
+    height:370px;
+    /* margin:9% auto; */
+    border:1px solid black;
+    background-color:white;
+    border-radius:5px;
+    box-shadow: 10px 8px 15px 1px rgba(0,0,0,0.35);    
+    border:none;
+    /* clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); */
+}
+
+.login-form-container > form {
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}

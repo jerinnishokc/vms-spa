@@ -7,6 +7,7 @@ import ScrollToTop from './components/scroll-to-top/scrollToTop.component';
 import LoginPage from './pages/login/loginpage.component';
 
 class App extends React.Component {
+  
   render() {
       return (
         <div className="App">

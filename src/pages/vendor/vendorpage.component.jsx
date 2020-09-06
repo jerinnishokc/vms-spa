@@ -6,7 +6,6 @@ import './vendorpage.styles.css';
 import VendorBox from '../../components/vendor/vendor-box/vendor-box.component';
 import {getAllVehicles, addVehicle} from '../../data/vehicle.datastore';
 import alertify from 'alertifyjs';
-import 'alertifyjs/build/css/alertify.css';
 
 class VendorPage extends React.Component {   
     state = {

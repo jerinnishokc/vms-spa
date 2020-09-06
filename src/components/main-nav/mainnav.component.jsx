@@ -3,11 +3,41 @@ import {Link} from 'react-router-dom';
 import './mainnav.styles.css';
 
 class Navbar extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.listener = null;
+        this.state = {
+            status: "top"
+        };
+    }
+
+    componentDidMount() {
+        this.listener = document.addEventListener("scroll", e => {
+            var scrolled = document.scrollingElement.scrollTop;
+            if (scrolled >= 650) {
+            if (this.state.status !== "not-top") {
+                this.setState({ status: "not-top" });
+            }
+            } else {
+            if (this.state.status !== "top") {
+                this.setState({ status: "top" });
+            }
+            }
+        });
+    }
+
+    componentDidUpdate() {
+        document.removeEventListener("scroll", this.listener);
+    }
+
     navBarDecider(page) {
         switch (page) {
             case 'HomePage':
                 return (
-                <nav className="nav-bar">
+                <nav className="nav-bar" style={{
+                    backgroundColor: this.state.status === "top" ? "rgba(250,250,250, 0.2)" : "#2F2FA2",
+                }}>
                     <div className="logo-container">
                     <span><Link to="/">LOGO</Link></span>
                     </div>
