@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import './mainnav.styles.css';
+import alertify from 'alertifyjs';
 
 class Navbar extends React.Component {
     constructor(props) {
@@ -27,11 +28,22 @@ class Navbar extends React.Component {
         });
     }
 
+    handleLogout = () => {
+        alertify.confirm("Check", "Do you really want to logout?",
+        () => {
+            this.props.logout();
+            
+        },
+        () => {
+            alertify.error('Cancel');
+        });
+    };
+
     componentDidUpdate() {
         document.removeEventListener("scroll", this.listener);
     }
 
-    navBarDecider(page) {
+    navBarDecider = (page) => {
         switch (page) {
             case 'HomePage':
                 return (
@@ -46,7 +58,12 @@ class Navbar extends React.Component {
                         <li><a href="#about">About</a></li>
                         <li><a href="#services">Services</a></li>
                         <li><a href="#contact">Contact</a></li>
-                        <li><Link to="/login">Login</Link></li>
+                        {
+                            !this.props.user ? 
+                            <li><Link to="/login">Login</Link></li>
+                            :
+                            <li><span onClick={this.handleLogout}>Logout-{this.props.user.name}</span></li>
+                        }
                     </ul>
                 </nav>);
             case 'VendorPage':
@@ -56,7 +73,12 @@ class Navbar extends React.Component {
                     <span><Link to="/">LOGO</Link></span>
                     </div>
                     <ul className="menu-container">
+                    {
+                        !this.props.user ? 
                         <li><Link to="/login">Login</Link></li>
+                        :
+                        <li><span onClick={this.handleLogout}>Logout-{this.props.user.name}</span></li>
+                    }
                     </ul>
                 </nav>);
             case 'LoginPage':

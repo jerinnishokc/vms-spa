@@ -52,9 +52,10 @@ class HomePage extends React.Component {
       };
       
     render() {
+        console.log('Home page rendered:', this.props);
         return (
             <div>
-              <Navbar page="HomePage"/>
+              <Navbar page="HomePage" user={this.props.user} logout={this.props.logout}/>
               <main className="main-container">
                   <section id="landing">
                     <div className="landing-content-container">

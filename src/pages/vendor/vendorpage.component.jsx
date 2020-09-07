@@ -11,21 +11,31 @@ class VendorPage extends React.Component {
     state = {
         isLoading: true,
         vehicles: [],
-        searchField: ''
+        searchField: '',
+        error: false
     }; 
 
-    async componentDidMount() {        
-        const vehicles = await getAllVehicles();
-        console.log("From the Vendor page componentDidMount: ");
-        console.log("Vehicles: ", vehicles);
-        this.setState({
-            vehicles: vehicles.map(x => ({
-                id: x.vehId,
-                regId: x.id, 
-                name: x.name, 
-                company: x.company
-            }))
-        }, () => this.setState({isLoading: false}));
+    async componentDidMount() {      
+        try {
+            const vehicles = await getAllVehicles();
+            console.log("From the Vendor page componentDidMount: ");
+            console.log("Vehicles: ", vehicles);
+            this.setState({
+                vehicles: vehicles.map(x => ({
+                    id: x.vehId,
+                    regId: x.id, 
+                    name: x.name, 
+                    company: x.company
+                }))
+            }, () => this.setState({isLoading: false}));
+        }  catch(e) {
+            this.setState({
+                error: true
+            }, () => {
+                alertify.error('Time out');
+            });
+            console.log('Error occureed', e);
+        }
     }
 
     addVehicle = async (vehicle) => {
@@ -56,10 +66,10 @@ class VendorPage extends React.Component {
 
         return (
             <div className="vendorpage-container">
-                <Navbar page="VendorPage" />
+                <Navbar page="VendorPage" user={this.props.user} logout={this.props.logout}/>
                 <SideNav page="vendorpage" className="sidenav"/>
                 <main>
-                    <VendorBox addVehicle={this.addVehicle} vehicles={filteredVehicles} isLoading={this.state.isLoading} updateFilterText={(e) => this.setState({ searchField: e.target.value })}/>
+                    <VendorBox addVehicle={this.addVehicle} vehicles={filteredVehicles} isLoading={this.state.isLoading} updateFilterText={(e) => this.setState({ searchField: e.target.value })} error={this.state.error}/>
                 </main>
                 <Footer />
             </div>

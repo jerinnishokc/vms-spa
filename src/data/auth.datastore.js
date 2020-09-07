@@ -1,3 +1,5 @@
+import {clearLocalStorage} from './utility';
+
 async function login(user) {
     // Make post login request
     try{
@@ -15,7 +17,7 @@ async function login(user) {
         });
         const userDetails = await response.json();
         // console.log(response);
-        // console.log(userDetails);
+        console.log(userDetails);        
         return userDetails;
     } catch(e) {
         console.log('Error occurred', e);
@@ -28,4 +30,23 @@ function signUp(user) {
     return true;
 }
 
-export {login, signUp};
+function kickStartAutoLogout(expirationDate, logout) {
+    // const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
+    console.log('AUTO LOGOUT SET');
+    const expirationDuration = new Date(expirationDate).getTime() - new Date().getTime();
+    console.log(expirationDuration);
+    setTimeout(() => {        
+        console.log('AUTO EXPIRE KICKS OFF');
+        logout();        
+        clearLocalStorage("user");
+    }, expirationDuration);
+    //expirationDuration
+}
+
+// autoLogout(expirationDuration: number) {
+//     this.tokenExpirationTimer = setTimeout(() => {
+//       this.logout();
+//     }, expirationDuration);
+//   }
+
+export {login, signUp, kickStartAutoLogout};
