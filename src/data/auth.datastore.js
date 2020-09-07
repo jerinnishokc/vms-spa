@@ -15,10 +15,14 @@ async function login(user) {
             },
             body: JSON.stringify(userObj)
         });
-        const userDetails = await response.json();
-        // console.log(response);
-        console.log(userDetails);        
-        return userDetails;
+        if(response.status === 200) {
+            const userDetails = await response.json();
+            // console.log(response);
+            console.log(userDetails);        
+            return userDetails;
+        } else {
+            throw new Error(`${response.status} - ${response.title}`);
+        }
     } catch(e) {
         console.log('Error occurred', e);
         return false;

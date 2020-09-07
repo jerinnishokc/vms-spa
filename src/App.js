@@ -5,8 +5,9 @@ import VendorPage from './pages/vendor/vendorpage.component';
 import HomePage from './pages/home/homepage.component';
 import ScrollToTop from './components/scroll-to-top/scrollToTop.component';
 import LoginPage from './pages/login/loginpage.component';
-import {checkLocalStorage, clearLocalStorage} from './data/utility';
-import alertify from 'alertifyjs';
+import {checkLocalStorage, clearLocalStorage, storeInLocalStorage} from './data/utility';
+import {kickStartAutoLogout} from './data/auth.datastore';
+// import alertify from 'alertifyjs';
 
 class App extends React.Component {
   state = {
@@ -24,6 +25,9 @@ class App extends React.Component {
     console.log('APP COMPONENT-LOGIN', user);
     this.setState({
       user: user
+    }, () => {
+      storeInLocalStorage("user", JSON.stringify(user));
+      kickStartAutoLogout(user.tokenExpirationDate,this.logout);
     });
     // alertify.success("Successfully logged in!");
   }
@@ -32,9 +36,9 @@ class App extends React.Component {
     console.log('APP COMPONENT-LOGOUT');
     this.setState({
       user: null
+    }, () => {
+      clearLocalStorage("user");
     });
-    clearLocalStorage("user");
-    alertify.success("Successfully logged out!");
   }
 
   render() {

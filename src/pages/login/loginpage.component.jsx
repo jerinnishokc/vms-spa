@@ -1,7 +1,6 @@
 import React from 'react';
 import './loginpage.styles.css';
-import {login, kickStartAutoLogout} from '../../data/auth.datastore';
-import {storeInLocalStorage} from '../../data/utility';
+import {login} from '../../data/auth.datastore';
 import alertify from 'alertifyjs';
 import {Link} from 'react-router-dom';
 import CustomButton from '../../components/custom-button/customButton.component';
@@ -25,21 +24,29 @@ class LoginPage extends React.Component {
             const {valid, response} = this.validateInputs();
             if(valid === true) {
                 const userDetails = await login(this.state);
-                userDetails ? alertify.success("Login succeeded") : alertify.error("Login failed");
-                this.resetForm();
-                storeInLocalStorage("user", JSON.stringify(userDetails));
-                this.props.loggedIn(userDetails);                
-                kickStartAutoLogout(userDetails.tokenExpirationDate,this.logout);
-                this.props.history.push('/');
+                userDetails ? this.success(userDetails) : this.failure();
             } else {
                 alertify.error(response);
-                this.resetForm();
+                this.setState({isLoading: false});
             }
         } catch(e) {
             console.log('Error occurred', e);
+            this.resetForm();
         }
     };
 
+    success(userDetails) {
+        alertify.success("Login succeeded");
+        this.resetForm();
+        this.props.loggedIn(userDetails);                
+        this.props.history.push('/');
+    }
+
+    failure() {
+        alertify.error("Login failed");
+        this.resetForm();
+        this.setState({isLoading: false});
+    }
     logout = () => {
         this.props.logout();
     }
@@ -59,7 +66,17 @@ class LoginPage extends React.Component {
 
         if(!this.state.email) {
             valid = false;
-            response = 'Email cannot be empty';
+            response = 'Email cannot be empty!';
+            return {valid, response};
+        }
+        if(!this.state.password) {
+            valid = false;
+            response = 'Password cannot be empty!';
+            return {valid, response};
+        }
+        if(this.state.type === "-1") {
+            valid = false;
+            response = 'Please choose user type!';
             return {valid, response};
         }
 

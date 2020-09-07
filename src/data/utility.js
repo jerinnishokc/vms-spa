@@ -1,3 +1,5 @@
+import alertify from 'alertifyjs';
+
 function storeInLocalStorage(key,value) {
     console.log('STORE LOCAL STORAGE',key,value);
     window.localStorage.setItem(key, value);
@@ -6,6 +8,7 @@ function storeInLocalStorage(key,value) {
 function clearLocalStorage(key) {
     console.log('CLEAR LOCAL STORAGE', key);
     window.localStorage.removeItem(key);
+    alertify.success("Successfully logged out!");
 } 
 
 function checkLocalStorage(key) {
