@@ -13,7 +13,7 @@ class UserBox extends React.Component {
     };
     render() {
         return (
-            <div className="user-box-container">
+            <div className={`user-box-container ${this.props.page !== 'HomePage' ? 'black-nav-font-styles' : ''}`} >
                 Signed in as {this.props.user.name}
                 <div onClick={this.toggleDropDown} className="user-box-image-container">
                     <i className="fa fa-user-circle"></i>

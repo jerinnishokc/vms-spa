@@ -45,7 +45,7 @@
     font-size: 0.9em;
 }
 
-.button-container {
+.vendor-button-container {
     width:100%;
     display: flex;
     justify-content: stretch;
@@ -54,7 +54,7 @@
     /* border:1px solid black; */
 }
 
-.button-container > button {
+.vendor-button-container > button {
     height: 3.5rem;/*approx 40px*/
     /* border-radius: 0.2rem; */
     border:none;
@@ -64,52 +64,52 @@
     cursor: pointer;
 }
 
-.button-container > button:active {
+.vendor-button-container > button:active {
     transform:scale(0.9);    
 }
 
-.button-container > button:focus {
+.vendor-button-container > button:focus {
     outline:none;
 }
 
-.button-container .booking-button {
+.vendor-button-container .booking-button {
     width:50%;
     background-color:#368F8B;
     color: white;
     border:none;
 }
 
-.button-container .booking-button:hover {
+.vendor-button-container .booking-button:hover {
     background-color: white;
     color: #368F8B;
     border:1px solid #368F8B;
 }
 
 
-.button-container .edit-button,.delete-button {
+.vendor-button-container .edit-button,.delete-button {
     width:25%;
     font-size:1.3rem;
 }
 
-.button-container .edit-button {
+.vendor-button-container .edit-button {
     background-color:#1D2F6F;
     color: white;
     border:none;
 }
 
-.button-container .edit-button:hover {
+.vendor-button-container .edit-button:hover {
     background-color:white;
     color: #1D2F6F;
     border:1px solid #1D2F6F;
 }
 
-.button-container .delete-button {
+.vendor-button-container .delete-button {
     background-color:#D91E36;
     color: white;
     border:none;
 }
 
-.button-container .delete-button:hover {
+.vendor-button-container .delete-button:hover {
     background-color:white;
     color: #D91E36;
     border:1px solid #D91E36;
@@ -124,4 +124,42 @@
         width:90%;
         height:15%; 
     }
+}
+
+.user-button-container {
+    width:100%;
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+}
+
+.user-button-container > button {
+    height: 3.5rem;/*approx 40px*/
+    /* border-radius: 0.2rem; */
+    border:none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.user-button-container > button:active {
+    transform:scale(0.9);    
+}
+
+.user-button-container > button:focus {
+    outline:none;
+}
+
+.user-button-container .booking-button {
+    width:100%;
+    background-color:#368F8B;
+    color: white;
+    border:none;
+}
+
+.user-button-container .booking-button:hover {
+    background-color: white;
+    color: #368F8B;
+    border:1px solid #368F8B;
 }

@@ -48,7 +48,6 @@ class HomePage extends React.Component {
         } catch(err) {
           console.log(err);
         }
-    
       };
       
     render() {
@@ -77,6 +76,7 @@ class HomePage extends React.Component {
                     <h1>Services</h1>  
                     <div className="services-container">
                         <div>
+                          <Link to="/user">User</Link>
                           <UserServiceSVG className="services-container-image"/>
                         </div>
                         <div>
@@ -89,13 +89,13 @@ class HomePage extends React.Component {
                   <section id="contact">
                     <h1>Contact</h1>
                     <div className="social-icons">
-                      <i className="fab fa-whatsapp"></i>
-                      <i className="fab fa-twitter"></i>
-                      <i className="fab fa-linkedin-in"></i>
-                      <i className="fab fa-instagram"></i>
-                      <i className="fab fa-facebook"></i>
-                      <i className="fab fa-youtube"></i>
-                  </div>
+                        <i className="fab fa-whatsapp"></i>
+                        <i className="fab fa-twitter"></i>
+                        <i className="fab fa-linkedin-in"></i>
+                        <i className="fab fa-instagram"></i>
+                        <i className="fab fa-facebook"></i>
+                        <i className="fab fa-youtube"></i>
+                    </div>
                   </section>          
               </main>
               <Footer />

@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import alertify from 'alertifyjs';
 
 const PrivateRoute = (props) => {
-    console.log(props);
+    console.log('refreshed',props);
     const {user} = props;
     return (
         !!user ? accessCheck(props) : <Redirect to="/login"/>

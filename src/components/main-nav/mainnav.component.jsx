@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import './mainnav.styles.css';
 import alertify from 'alertifyjs';
 import UserBox from '../../components/user-box/userBox.component';
+import {withRouter} from 'react-router-dom';
 
 class Navbar extends React.Component {
     constructor(props) {
@@ -70,7 +71,7 @@ class Navbar extends React.Component {
                             !this.props.user ? 
                             <li><Link to="/login">Login</Link></li>
                             :
-                            <li><UserBox handleLogout={this.handleLogout} user={this.props.user}/></li>
+                            <li><UserBox handleLogout={this.handleLogout} user={this.props.user} page={page}/></li>
                         }
                     </ul>
                 </nav>);
@@ -85,16 +86,26 @@ class Navbar extends React.Component {
                         !this.props.user ? 
                         <li><Link to="/login">Login</Link></li>
                         :
-                        <li><UserBox handleLogout={this.handleLogout} user={this.props.user}/></li>
+                        <li><UserBox handleLogout={this.handleLogout} user={this.props.user} page={page}/></li>
                     }
                     </ul>
                 </nav>);
-            case 'LoginPage':
+            case 'UserPage':
               return (
                 <nav className="nav-bar invert">
                     <div className="logo-container">
-                    <span><Link to="/">LOGO</Link></span>
-                    </div>                
+                        <span><Link to="/">LOGO</Link></span>
+                    </div>   
+                    <ul className="menu-container">
+                        <li><Link to={`${this.props.match.path}`}>Renting Portal</Link></li>
+                        <li><Link to={`${this.props.match.path}/userMyBookings`}>My Bookings</Link></li>
+                        {
+                            !this.props.user ? 
+                            <li><Link to="/login">Login</Link></li>
+                            :
+                            <li><UserBox handleLogout={this.handleLogout} user={this.props.user} page={page}/></li>
+                        }
+                    </ul>             
                 </nav>);
             default:
               break;
@@ -108,4 +119,4 @@ class Navbar extends React.Component {
     }
 }
 
-export default Navbar;
+export default withRouter(Navbar);

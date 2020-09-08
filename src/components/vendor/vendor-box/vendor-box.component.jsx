@@ -13,11 +13,11 @@ const VendorBox = (props) => {
                 props.error ? 
                 <p>Try after some time</p>
                 :
-                <VendorDashboard vehicles={props.vehicles} isLoading={props.isLoading} updateFilterText={props.updateFilterText}/>
+                <VendorDashboard user={props.user} vehicles={props.vehicles} isLoading={props.isLoading} updateFilterText={props.updateFilterText}/>
             }
             </Route>
             <Route exact path={`${props.match.path}/vendor-reg-form`}>
-                <VendorVehRegForm addVehicle={props.addVehicle}/>
+                <VendorVehRegForm user={props.user} addVehicle={props.addVehicle}/>
             </Route>
         </div>
     );

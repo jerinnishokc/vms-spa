@@ -1,10 +1,10 @@
 import React from 'react';
-import './vendor-dashboard.styles.css';
+import './user-rental-portal.styles.css';
 import CardContainer from '../../card-container/card-container.component';
 
-const VendorDashboard = (props) => {
+const UserRentalPortal = (props) => {
     return (
-        <div className="vendor-dashboard">
+        <div className="user-rental-portal-contianer">
             <input className="searchInputContainer" type="text" placeholder="Search vehicles" onChange={props.updateFilterText}/>
             {
                 props.isLoading ? 
@@ -15,10 +15,9 @@ const VendorDashboard = (props) => {
                         <div></div>
                         <div></div>
                     </div>
-                </div>
-                : 
+                </div> :
                 props.vehicles.length > 0 ?  
-                <CardContainer vehicles={props.vehicles} page="VendorPage"/>
+                <CardContainer vehicles={props.vehicles} page="UserPage" bookVehicle={props.bookVehicle}/>
                 :
                 <p>No vehicles found!!</p>
             }
@@ -26,4 +25,4 @@ const VendorDashboard = (props) => {
     );
 }
 
-export default VendorDashboard;
+export default UserRentalPortal;

@@ -1,0 +1,29 @@
+.userpage-container {
+    display: grid;
+    grid-template-areas: 
+    "nav nav nav nav"
+    "main main main main"
+    "footer footer footer footer";    
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto auto 20vh;
+}
+
+.userpage-container .nav-bar {
+    grid-area: nav;
+}
+
+.userpage-container main {
+    grid-area: main;
+}
+
+.userpage-container footer {
+    grid-area: footer;
+}
+
+.userpage-main-continer {
+    padding:0;
+    width: 95vw;
+    height:auto;
+    /* border: 1px solid black; */
+    margin:80px auto auto auto;
+}

@@ -20,12 +20,51 @@ class VendorPage extends React.Component {
             const vehicles = await getAllVendorVehicles(this.props.user.id);
             console.log("From the Vendor page componentDidMount: ");
             console.log("Vehicles: ", vehicles);
+            this.setVehiclesToState(vehicles);
+        } catch(e) {
+            console.log(e);
+        }
+    }
+
+    addVehicle = async (vehicle) => {
+        // console.log('add vehicle: ', vehicle);
+        const result = await addVehicle(vehicle);
+        
+        if(result === 'success') {
+            alertify.success("Added the vehicle successfully!");
+            const vehicles = await getAllVendorVehicles(this.props.user.id);
+            this.setVehiclesToState(vehicles);
+            // this.setState(state => {
+            //     // console.log('state before update: ', state);
+            //     const newList = [...state.vehicles, vehicle];
+            //     // console.log('state before update: ', newList);
+            //     return {
+            //         vehicles : newList
+            //     };
+            // }, () => {
+            //     alertify.success("Added the vehicle successfully!");
+            //     console.log('successfully updated the vehicles')
+            // });
+        } else {
+            alertify.error('Error occurred');
+        }
+    };
+    
+    setVehiclesToState(vehicles) {
+        try{
             this.setState({
                 vehicles: vehicles.map(x => ({
-                    id: x.vehId,
-                    regId: x.id, 
+                    id: x.id,
+                    uid: x.uid,                    
+                    regId: x.regId, 
                     name: x.name, 
-                    company: x.company
+                    company: x.company,
+                    price: x.price,
+                    vendor_id: x.vendorId,
+                    vendor_name: x.vendorName,
+                    booking_status: x.bookingStatus,
+                    booking_user_id: x.bookedUserUid,
+                    booking_user_name: x.bookedUserName
                 }))
             }, () => this.setState({isLoading: false}));
         }  catch(e) {
@@ -38,27 +77,6 @@ class VendorPage extends React.Component {
         }
     }
 
-    addVehicle = async (vehicle) => {
-        // console.log('add vehicle: ', vehicle);
-        const result = await addVehicle(vehicle);
-        
-        if(result === 'success') {
-            this.setState(state => {
-                // console.log('state before update: ', state);
-                const newList = [...state.vehicles, vehicle];
-                // console.log('state before update: ', newList);
-                return {
-                    vehicles : newList
-                };
-            }, () => {
-                alertify.success("Added the vehicle successfully!");
-                console.log('successfully updated the vehicles')
-            });
-        } else {
-            alert('Error occurred');
-        }
-    };
-    
     render() {
         const {vehicles, searchField} = this.state;
 
@@ -69,7 +87,7 @@ class VendorPage extends React.Component {
                 <Navbar page="VendorPage" user={this.props.user} logout={this.props.logout}/>
                 <SideNav page="vendorpage" className="sidenav"/>
                 <main>
-                    <VendorBox addVehicle={this.addVehicle} vehicles={filteredVehicles} isLoading={this.state.isLoading} updateFilterText={(e) => this.setState({ searchField: e.target.value })} error={this.state.error}/>
+                    <VendorBox user={this.props.user} addVehicle={this.addVehicle} vehicles={filteredVehicles} isLoading={this.state.isLoading} updateFilterText={(e) => this.setState({ searchField: e.target.value })} error={this.state.error}/>
                 </main>
                 <Footer />
             </div>

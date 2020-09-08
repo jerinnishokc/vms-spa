@@ -6,6 +6,7 @@ import ScrollToTop from '../components/scroll-to-top/scrollToTop.component';
 import LoginPage from '../pages/login/loginpage.component';
 import SignUpPage from '../pages/signup/signupPage.component';
 import PrivateRoute from './private-route.component';
+import UserPage from '../pages/user/userpage.component';
 
 const AppRouter = ({user, logout, loggedIn}) => {
     return (
@@ -15,6 +16,9 @@ const AppRouter = ({user, logout, loggedIn}) => {
           <Route exact path="/">
             <HomePage user={user} logout={logout}/>
           </Route>
+          <PrivateRoute path="/user" user={user} accessType="user">
+            <UserPage user={user} logout={logout}/>
+          </PrivateRoute>
           <PrivateRoute path="/vendor" user={user} accessType="vendor">
             <VendorPage user={user} logout={logout}/>
           </PrivateRoute>
