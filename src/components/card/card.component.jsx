@@ -1,5 +1,7 @@
 import React from 'react';
 import './card.styles.css';
+import {serviceUnavailable} from '../../data/utility';
+import alertify from 'alertifyjs';
 
 const Card = (props) => {   
     return (
@@ -29,9 +31,9 @@ const cardDecider = (props) => {
                     }          
                 </div>
                 <div className="vendor-button-container">
-                    <button className="booking-button">Book</button>
-                    <button className="edit-button"><i className="fas fa-edit"></i></button>
-                    <button className="delete-button"><i className="far fa-trash-alt"></i></button>
+                    <button className="booking-button" onClick={()=>serviceUnavailable()}>Book</button>
+                    <button className="edit-button" onClick={()=>serviceUnavailable()}><i className="fas fa-edit"></i></button>
+                    <button className="delete-button" onClick={()=>serviceUnavailable()}><i className="far fa-trash-alt"></i></button>
                 </div>
             </div>
         );
@@ -56,10 +58,38 @@ const cardDecider = (props) => {
                     }          
                 </div>
                 <div className="user-button-container">
-                    <button className="booking-button" onClick={() => props.bookVehicle(props.vehicle)}>{props.vehicle.booking_status === 'Y' ? 'Un-Book' : 'Book'}</button>
+                    <button className="booking-button" onClick={() => fakePayment(() => props.bookVehicle(props.vehicle),props)}>{props.vehicle.booking_status === 'Y' ? 'Un-Book' : 'Book'}</button>
                 </div>
             </div>
         );
     }
 };
+
+const fakePayment = (bookVehicle,props) => {
+    // alertify.prompt("Payment Gateway-Fake Payment service", "Enter your UPI", `${user.name}@okicici`,
+    // function(evt, value){
+    //     alertify.success('Payment successfull! Your vehicle is booked!');
+    //     bookVehicle();   
+    // },
+    // function(){
+    //     alertify.error('Booking unsuccessfull');
+    // }); 
+    if(props.vehicle.booking_status === 'Y') {
+        bookVehicle();
+        alertify.success("Successfully un-booked your vehicle");
+    } else {
+        alertify.prompt(
+            'Payment Gateway-Fake Payment service', 
+            'Enter your UPI', 
+            `${props.user.name}@okicici`, 
+            function(evt, value) { 
+                alertify.success('Payment successfull! Your vehicle is booked!');
+                bookVehicle();   
+            },
+            function() { 
+                alertify.error('Booking unsuccessfull'); 
+            }); 
+    }
+}
+
 export default Card;

@@ -18,4 +18,7 @@ function checkLocalStorage(key) {
     return user;
 } 
 
-export {storeInLocalStorage, clearLocalStorage, checkLocalStorage};
+function serviceUnavailable() {
+    alertify.warning('This service is not available now. Will be included in the coming days!');
+}
+export {storeInLocalStorage, clearLocalStorage, checkLocalStorage, serviceUnavailable};

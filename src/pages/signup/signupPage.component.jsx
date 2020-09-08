@@ -125,7 +125,7 @@ class SignUpPage extends React.Component {
                 </div>
                 <div className="signup-form-container">
                     <div className="logo-container">
-                        <Link to="/">LOGO</Link>
+                        <Link to="/">WOODS</Link>
                     </div>
                     <div className="signup-form-element-container">
                         <form>

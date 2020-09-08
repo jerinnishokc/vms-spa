@@ -14,7 +14,7 @@ const CardContainer = (props) => {
             
             <div className="card-container">
                 {
-                    props.vehicles.map(x => <Card key={x.id} vehicle={x} page={props.page} bookVehicle={props.bookVehicle}/>)
+                    props.vehicles.map(x => <Card key={x.id} user={props.user} vehicle={x} page={props.page} bookVehicle={props.bookVehicle}/>)
                 }
             </div>
         </div>

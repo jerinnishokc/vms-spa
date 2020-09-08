@@ -34,7 +34,6 @@ class Navbar extends React.Component {
         alertify.confirm("Logout", "Do you really want to logout?",
         () => {
             this.props.logout();
-            
         },
         () => {
             //alertify.error('Cancel');
@@ -60,7 +59,7 @@ class Navbar extends React.Component {
                     backgroundColor: this.state.status === "top" ? "rgba(250,250,250, 0.2)" : "#2F2FA2",
                 }}>
                     <div className="logo-container">
-                    <span><Link to="/">LOGO</Link></span>
+                    <span><Link to="/">WOODS</Link></span>
                     </div>
                     <ul className="menu-container">
                         <li><a href="#landing">Home</a></li>
@@ -79,7 +78,7 @@ class Navbar extends React.Component {
                 return (
                 <nav className="nav-bar invert">
                     <div className="logo-container">
-                    <span><Link to="/">LOGO</Link></span>
+                    <span><Link to="/">WOODS</Link></span>
                     </div>
                     <ul className="menu-container">
                     {
@@ -94,7 +93,7 @@ class Navbar extends React.Component {
               return (
                 <nav className="nav-bar invert">
                     <div className="logo-container">
-                        <span><Link to="/">LOGO</Link></span>
+                        <span><Link to="/">WOODS</Link></span>
                     </div>   
                     <ul className="menu-container">
                         <li><Link to={`${this.props.match.path}`}>Renting Portal</Link></li>

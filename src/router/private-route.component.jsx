@@ -6,9 +6,16 @@ const PrivateRoute = (props) => {
     console.log('refreshed',props);
     const {user} = props;
     return (
-        !!user ? accessCheck(props) : <Redirect to="/login"/>
+        !!user ? accessCheck(props) : toLogin()
     );
 };
+ 
+const toLogin = () => {
+    alertify.warning("Please login to proceed!");
+    return (
+        <Redirect to="/login"/>
+    );
+}
 
 const accessCheck = ({user, accessType,children,...rest}) => {
     console.log('user:',user);

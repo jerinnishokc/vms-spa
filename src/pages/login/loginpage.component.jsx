@@ -112,7 +112,7 @@ class LoginPage extends React.Component {
                 </div>
                 <div className="login-form-container">
                     <div className="logo-container">
-                        <Link to="/">LOGO</Link>
+                        <Link to="/">WOODS</Link>
                     </div>
                     <div className="login-form-element-container">
                         <form>

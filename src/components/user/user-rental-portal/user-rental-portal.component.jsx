@@ -1,6 +1,7 @@
 import React from 'react';
 import './user-rental-portal.styles.css';
 import CardContainer from '../../card-container/card-container.component';
+// import alertify from 'alertifyjs';
 
 const UserRentalPortal = (props) => {
     return (
@@ -17,7 +18,7 @@ const UserRentalPortal = (props) => {
                     </div>
                 </div> :
                 props.vehicles.length > 0 ?  
-                <CardContainer vehicles={props.vehicles} page="UserPage" bookVehicle={props.bookVehicle}/>
+                <CardContainer user={props.user} vehicles={props.vehicles} page="UserPage" bookVehicle={props.bookVehicle}/>
                 :
                 <p>No vehicles found!!</p>
             }

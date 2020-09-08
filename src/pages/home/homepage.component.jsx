@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import Navbar from '../../components/main-nav/mainnav.component';
 import './homepage.styles.css';
 import Footer from '../../components/footer/footer.component';
@@ -7,6 +7,7 @@ import { ReactComponent as LandingSVG } from '../../assets/undraw_order_a_car_3t
 import { ReactComponent as UserServiceSVG } from '../../assets/undraw_order_ride_xjs4.svg';
 import { ReactComponent as VendorServiceSVG } from '../../assets/undraw_Vehicle_sale_a645.svg';
 import Box from '../../components/box/box.component';
+import {withRouter} from 'react-router-dom';
 
 class HomePage extends React.Component {
     static defaultProps = {
@@ -18,7 +19,7 @@ class HomePage extends React.Component {
         {id:5, name: "Security", text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",color: "blue", imgUrl: "https://images.unsplash.com/photo-1554672408-730436b60dde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80"},
         {id:6, name: "Track your vehicle", text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",color: "indigo", imgUrl: "https://images.unsplash.com/photo-1554672408-730436b60dde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80"},
         {id:7, name: "GPS", text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",color: "purple", imgUrl: "https://images.unsplash.com/photo-1541376936666-59ec998f1afd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=687&q=80"},
-        {id:8, name: "H", text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",color: "lightgreen", imgUrl: "https://images.unsplash.com/photo-1554672408-730436b60dde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80"},
+        {id:8, name: "Highly Rated", text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",color: "lightgreen", imgUrl: "https://images.unsplash.com/photo-1554672408-730436b60dde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80"},
         {id:9, name: "Highway Assistance", text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",color: "gray", imgUrl: "https://images.unsplash.com/photo-1554672408-730436b60dde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80"},
         {id:10, name: "Insurance Coverage", text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",color: "aquamarine", imgUrl: "https://images.unsplash.com/photo-1518430272387-254558840136?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=699&q=80"}
       ]
@@ -75,12 +76,14 @@ class HomePage extends React.Component {
                   <section id="services">
                     <h1>Services</h1>  
                     <div className="services-container">
-                        <div>
-                          <Link to="/user">User</Link>
+                        <div onClick={() => this.props.history.push('/user')}>
+                          {/*<Link to="/user">User</Link>*/}
+                          <h3>User</h3>
                           <UserServiceSVG className="services-container-image"/>
                         </div>
-                        <div>
-                          <Link to="/vendor">Vendor</Link>
+                        <div onClick={() => this.props.history.push('/vendor')}>
+                          {/*<Link to="/vendor">Vendor</Link>*/}
+                          <h3>Vendor</h3>
                           <VendorServiceSVG className="services-container-image"/>
                         </div>
                         {/*<Link to="/vendor">Vendor services</Link>*/}
@@ -104,4 +107,4 @@ class HomePage extends React.Component {
     }
 }
 
-export default HomePage;
+export default withRouter(HomePage);

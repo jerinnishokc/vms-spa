@@ -90,7 +90,7 @@ class UserPage extends React.Component {
             <div className="userpage-container">
                 <Navbar page="UserPage" user={this.props.user} logout={this.props.logout}/>
                 <main className="userpage-main-continer">
-                    <UserDecisionBox isLoading={this.state.isLoading} vehicles={filteredVehicles} updateFilterText={(e) => this.setState({ searchField: e.target.value })} bookVehicle={this.bookVehicle}/>
+                    <UserDecisionBox user={this.props.user} isLoading={this.state.isLoading} vehicles={filteredVehicles} updateFilterText={(e) => this.setState({ searchField: e.target.value })} bookVehicle={this.bookVehicle}/>
                 </main>
                 <Footer />
             </div>
