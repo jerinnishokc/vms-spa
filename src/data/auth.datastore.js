@@ -29,9 +29,36 @@ async function login(user) {
     }
 }
 
-function signUp(user) {
-    // Make post login request
-    return true;
+async function signUp(user) {
+    try{
+        const userObj = {
+            Uid: user.uid,
+            Name: user.name,
+            Email: user.email,
+            Type:user.type,
+            Password: user.password
+        };
+        // Make post login request
+        const response = await fetch("https://localhost:5001/api/auth/register",{
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userObj)
+        });
+        if(response.status === 200) {
+            //const userDetails = await response.json();
+            // console.log(response);
+            console.log(response);        
+
+            return true;
+        } else {
+            throw new Error(`${response.status} - ${response.title}`);
+        }
+    } catch(e) {
+        console.log('Error occurred', e);
+        return false;
+    }
 }
 
 function kickStartAutoLogout(expirationDate, logout) {
@@ -44,13 +71,6 @@ function kickStartAutoLogout(expirationDate, logout) {
         logout();        
         clearLocalStorage("user");
     }, expirationDuration);
-    //expirationDuration
 }
-
-// autoLogout(expirationDuration: number) {
-//     this.tokenExpirationTimer = setTimeout(() => {
-//       this.logout();
-//     }, expirationDuration);
-//   }
 
 export {login, signUp, kickStartAutoLogout};

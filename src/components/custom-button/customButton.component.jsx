@@ -3,7 +3,7 @@ import './customButton.styles.css';
 
 const CustomButton = ({children, type, ...otherProps}) => {
     return (
-        <button className={`${type === 'login' ? 'login-button' : 'regular-button'}`} {...otherProps}>{children}</button>
+        <button className={`${type === 'login' ? 'login-button' : 'regular-button'} ${type === 'signup' ? 'signup-button' : ''}`} {...otherProps}>{children}</button>
     );
 };
 

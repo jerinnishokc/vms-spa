@@ -35,3 +35,22 @@
     border:1px solid #2F2FA2;
     color:black;
 }
+
+.signup-button {
+    min-width: 100px;
+    min-height:35px;
+    padding: 0.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F64C72;
+    color:white;
+    cursor: pointer;
+    border:none;
+}
+
+.signup-button:hover {
+    background-color: white;
+    border:1px solid #F64C72;
+    color:black;
+}

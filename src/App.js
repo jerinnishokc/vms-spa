@@ -1,12 +1,8 @@
 import React from 'react';
 import './App.css';
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import VendorPage from './pages/vendor/vendorpage.component';
-import HomePage from './pages/home/homepage.component';
-import ScrollToTop from './components/scroll-to-top/scrollToTop.component';
-import LoginPage from './pages/login/loginpage.component';
 import {checkLocalStorage, clearLocalStorage, storeInLocalStorage} from './data/utility';
 import {kickStartAutoLogout} from './data/auth.datastore';
+import AppRouter from './router/app-router.component';
 // import alertify from 'alertifyjs';
 
 class App extends React.Component {
@@ -44,20 +40,7 @@ class App extends React.Component {
   render() {
       return (
         <div className="App">
-          <Router>
-            <ScrollToTop />
-            <Switch>
-              <Route exact path="/">
-                <HomePage user={this.state.user} logout={this.logout}/>
-              </Route>
-              <Route path="/vendor">
-                <VendorPage user={this.state.user} logout={this.logout}/>
-              </Route>
-              <Route path="/login">
-                <LoginPage loggedIn={this.loggedIn} logout={this.logout}/>
-              </Route>
-            </Switch>
-          </Router>
+          <AppRouter user={this.state.user} loggedIn={this.loggedIn} logout={this.logout}/>
         </div>
     );
   }

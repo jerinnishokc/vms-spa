@@ -35,11 +35,18 @@ class Navbar extends React.Component {
             
         },
         () => {
-            alertify.error('Cancel');
+            //alertify.error('Cancel');
+            console.log('Logout cancelled');
         });
     };
 
     componentDidUpdate() {
+        document.removeEventListener("scroll", this.listener);
+    }
+
+    componentWillUnmount() {
+        console.log('Navbar - Component will unmount');
+        this.listener = null;
         document.removeEventListener("scroll", this.listener);
     }
 
