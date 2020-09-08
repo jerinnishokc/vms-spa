@@ -15,7 +15,7 @@ const AppRouter = ({user, logout, loggedIn}) => {
           <Route exact path="/">
             <HomePage user={user} logout={logout}/>
           </Route>
-          <PrivateRoute path="/vendor" user={user} >
+          <PrivateRoute path="/vendor" user={user} accessType="vendor">
             <VendorPage user={user} logout={logout}/>
           </PrivateRoute>
           <Route path="/login">

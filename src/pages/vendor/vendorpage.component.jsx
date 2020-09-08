@@ -4,7 +4,7 @@ import SideNav from '../../components/sidenav/sidenav.component';
 import Footer from '../../components/footer/footer.component';
 import './vendorpage.styles.css';
 import VendorBox from '../../components/vendor/vendor-box/vendor-box.component';
-import {getAllVehicles, addVehicle} from '../../data/vehicle.datastore';
+import {getAllVendorVehicles, addVehicle} from '../../data/vehicle.datastore';
 import alertify from 'alertifyjs';
 
 class VendorPage extends React.Component {   
@@ -17,7 +17,7 @@ class VendorPage extends React.Component {
 
     async componentDidMount() {      
         try {
-            const vehicles = await getAllVehicles();
+            const vehicles = await getAllVendorVehicles(this.props.user.id);
             console.log("From the Vendor page componentDidMount: ");
             console.log("Vehicles: ", vehicles);
             this.setState({

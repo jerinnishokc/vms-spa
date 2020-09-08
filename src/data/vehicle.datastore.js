@@ -1,8 +1,9 @@
-async function getAllVehicles() {
+async function getAllVendorVehicles(vendorId) {
     //get
     //sleep
-    await new Promise(r => setTimeout(r,5000));    
-    const rawData = await fetch("https://localhost:5001/api/vehicles");
+    // await new Promise(r => setTimeout(r,5000));    
+    // const rawData = await fetch("https://localhost:5001/api/vehicles");
+    const rawData = await fetch(`https://localhost:44376/api/vehicles/vendorVehicles/${vendorId}`);
     const vehicles = await rawData.json();
     return vehicles;
     
@@ -42,4 +43,4 @@ async function addVehicle(newVehicle) {
     }
 }
 
-export {getAllVehicles, getVehicle, addVehicle};
+export {getAllVendorVehicles, getVehicle, addVehicle};

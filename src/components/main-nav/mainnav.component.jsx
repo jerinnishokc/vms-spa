@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import './mainnav.styles.css';
 import alertify from 'alertifyjs';
+import UserBox from '../../components/user-box/userBox.component';
 
 class Navbar extends React.Component {
     constructor(props) {
@@ -29,7 +30,7 @@ class Navbar extends React.Component {
     }
 
     handleLogout = () => {
-        alertify.confirm("Check", "Do you really want to logout?",
+        alertify.confirm("Logout", "Do you really want to logout?",
         () => {
             this.props.logout();
             
@@ -69,7 +70,7 @@ class Navbar extends React.Component {
                             !this.props.user ? 
                             <li><Link to="/login">Login</Link></li>
                             :
-                            <li><span onClick={this.handleLogout}>Logout-{this.props.user.name}</span></li>
+                            <li><UserBox handleLogout={this.handleLogout} user={this.props.user}/></li>
                         }
                     </ul>
                 </nav>);
@@ -84,7 +85,7 @@ class Navbar extends React.Component {
                         !this.props.user ? 
                         <li><Link to="/login">Login</Link></li>
                         :
-                        <li><span onClick={this.handleLogout}>Logout-{this.props.user.name}</span></li>
+                        <li><UserBox handleLogout={this.handleLogout} user={this.props.user}/></li>
                     }
                     </ul>
                 </nav>);
