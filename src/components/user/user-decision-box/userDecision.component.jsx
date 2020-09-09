@@ -12,7 +12,7 @@ const UserDecisionBox = (props) => {
                 <UserRentalPortal user={props.user} isLoading={props.isLoading} vehicles={props.vehicles} updateFilterText={props.updateFilterText} bookVehicle={props.bookVehicle}/>
             </Route>
             <Route exact path={`${props.match.path}/userMyBookings`}>
-                <UserMyBookings />
+                <UserMyBookings user={props.user} bookedVehicles={props.bookedVehicles} bookVehicle={props.bookVehicle}/>
             </Route>
         </div>
     );

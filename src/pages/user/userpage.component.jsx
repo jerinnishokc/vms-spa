@@ -5,20 +5,26 @@ import './userpage.styles.css';
 import UserDecisionBox from '../../components/user/user-decision-box/userDecision.component';
 import {getAllAvailableVehicles} from '../../data/vehicle.datastore';
 import alertify from 'alertifyjs';
-import {bookAVehicle} from '../../data/vehicle.datastore';
+import {bookAVehicle, getBookedVehicles} from '../../data/vehicle.datastore';
 // import WithSpinner from '../../components/with-spinnner/withSpinner.component';
 
 class UserPage extends React.Component {   
     state = {
         vehicles: [],    
         isLoading: true,
-        searchField: ""
+        searchField: "",
+        bookedVehicles: []
     }; 
 
     async componentDidMount() {
         try{
             const availableVehicles = await getAllAvailableVehicles();
-            this.setVehiclesToState(availableVehicles);       
+            this.setVehiclesToState(availableVehicles); 
+            const bookedVehicles = await getBookedVehicles(this.props.user.id);
+            this.setBookedVehiclesToState(bookedVehicles);
+            // this.setState({
+            //     bookedVehicles: bookedVehicles
+            // });      
             console.log('Available vehicles:', availableVehicles);     
         } catch(e) {
             alertify.error('Error occurred');
@@ -52,33 +58,94 @@ class UserPage extends React.Component {
         }
     }
 
-    bookVehicle = (vehicle) => {
-        this.setState(state => {
-            const newState = state.vehicles.map(x => {
-                    if(x.uid === vehicle.uid) {
-                        let booking_status = null;
-                        let booking_user_id = null;
-                        let booking_user_name = null;
-                        if(x.booking_status === 'Y') {
-                            booking_status = 'N';
-                            booking_user_id = null;
-                            booking_user_name = null;
-                        } else {
-                            booking_status = 'Y';
-                            booking_user_id = this.props.user.id;
-                            booking_user_name = this.props.user.name;
-                        }
-                        return {...x,booking_status: booking_status, booking_user_id: booking_user_id, booking_user_name: booking_user_name};
-                    }
-                    return x.uid === vehicle.uid ? {...x, booking_status: 'N', booking_user_id: this.props.user.id, booking_user_name: this.props.user.name}: x;
-                });
-            return {
-                vehicles: newState
-            };
-        }, () => {
-            console.log('Updated vehicle list: ', this.state.vehicles);
+    setBookedVehiclesToState(vehicles) {
+        try{
+            this.setState({
+                bookedVehicles: vehicles.map(x => ({
+                    id: x.id,
+                    uid: x.uid,                    
+                    regId: x.regId, 
+                    name: x.name, 
+                    company: x.company,
+                    price: x.price,
+                    vendor_id: x.vendorId,
+                    vendor_name: x.vendorName,
+                    booking_status: x.bookingStatus,
+                    booking_user_id: x.bookedUserUid,
+                    booking_user_name: x.bookedUserName
+                }))
+            });
+        }  catch(e) {
+            this.setState({
+                error: true
+            }, () => {
+                alertify.error('Time out');
+            });
+            console.log('Error occureed', e);
+        }
+    }
+
+    bookVehicle = async (vehicle) => {
+        let booking_status = null;
+        let booking_user_id = null;
+        let booking_user_name = null;
+        if(vehicle.booking_status === 'Y') {
+            booking_status = 'N';
+            booking_user_id = null;
+            booking_user_name = null;
+        } else {
+            booking_status = 'Y';
+            booking_user_id = this.props.user.id;
+            booking_user_name = this.props.user.name;
+        }
+        // const response = await bookAVehicle({
+        //                     ...vehicle,
+        //                     booking_status: 'Y',
+        //                     booking_user_id: this.props.user.id,
+        //                     booking_user_name: this.props.user.name
+        //                 });
+        const response = await bookAVehicle({
+            ...vehicle,
+            booking_status: booking_status,
+            booking_user_id: booking_user_id,
+            booking_user_name: booking_user_name
         });
-        bookAVehicle(vehicle);
+        if(response) {
+            const availableVehicles = await getAllAvailableVehicles();
+            this.setVehiclesToState(availableVehicles);
+            const bookedVehicles = await getBookedVehicles(this.props.user.id);
+            this.setBookedVehiclesToState(bookedVehicles);
+            alertify.success('Vehicle booked successfully');
+        } else {
+            alertify.error(response);
+        }
+
+        // this.setState(state => {
+        //     const newState = state.vehicles.map(x => {
+        //             if(x.uid === vehicle.uid) {
+        //                 let booking_status = null;
+        //                 let booking_user_id = null;
+        //                 let booking_user_name = null;
+        //                 if(x.booking_status === 'Y') {
+        //                     booking_status = 'N';
+        //                     booking_user_id = null;
+        //                     booking_user_name = null;
+        //                 } else {
+        //                     booking_status = 'Y';
+        //                     booking_user_id = this.props.user.id;
+        //                     booking_user_name = this.props.user.name;
+        //                 }
+        //                 return {...x,booking_status: booking_status, booking_user_id: booking_user_id, booking_user_name: booking_user_name};
+        //             }
+        //             return x.uid === vehicle.uid ? {...x, booking_status: 'N', booking_user_id: this.props.user.id, booking_user_name: this.props.user.name}: x;
+        //         });
+        //     return {
+        //         vehicles: newState
+        //     };
+        // }, () => {
+        //     console.log('Updated vehicle list: ', this.state.vehicles);
+        // });
+        // bookAVehicle(vehicle);
     }
 
     render() {
@@ -90,7 +157,7 @@ class UserPage extends React.Component {
             <div className="userpage-container">
                 <Navbar page="UserPage" user={this.props.user} logout={this.props.logout}/>
                 <main className="userpage-main-continer">
-                    <UserDecisionBox user={this.props.user} isLoading={this.state.isLoading} vehicles={filteredVehicles} updateFilterText={(e) => this.setState({ searchField: e.target.value })} bookVehicle={this.bookVehicle}/>
+                    <UserDecisionBox user={this.props.user} isLoading={this.state.isLoading} vehicles={filteredVehicles} updateFilterText={(e) => this.setState({ searchField: e.target.value })} bookVehicle={this.bookVehicle} bookedVehicles={this.state.bookedVehicles}/>
                 </main>
                 <Footer />
             </div>
